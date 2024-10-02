@@ -1,0 +1,83 @@
+# Default values for core-keeper-dedicated.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: escaping/core-keeper-dedicated
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "latest"
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+# https://github.com/escapingnetwork/core-keeper-dedicated?tab=readme-ov-file#configuration
+config:
+  worldIndex: "0"
+  worldName: "Core Keeper Server"
+  worldSeed: "0"
+  worldMode: "0"
+  gameID: ""
+  dataPath: "/home/steam/core-keeper-data"
+  maxPlayers: "10"
+  discord: "0"
+  discordHook: ""
+  season: "-1"
+  serverIP: ""
+  serverPort: ""
+
+volumes:
+  serverFiles:
+    mountPath: "/home/steam/core-keeper-dedicated"
+    size: 10Gi
+    storageClass: null
+  serverData:
+    mountPath: "/home/steam/core-keeper-data"
+    size: 10Gi
+    storageClass: null
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Automatically mount a ServiceAccount's API credentials?
+  automount: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+podAnnotations: {}
+podLabels: {}
+
+podSecurityContext:
+  fsGroup: 1000
+
+securityContext:
+  runAsUser: 1000
+  runAsNonRoot: true
+  capabilities:
+    drop:
+      - ALL
+
+resources:
+  {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

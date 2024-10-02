@@ -1,0 +1,15 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: "{{ include "core-keeper-dedicated.fullname" . }}-server-files"
+  labels:
+    {{- include "core-keeper-dedicated.labels" . | nindent 4 }}
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: {{ .Values.volumes.serverFiles.size }}
+  {{- if ne .Values.volumes.serverFiles.storageClass "" }}
+  storageClassName: {{ .Values.volumes.serverFiles.storageClass }}
+  {{- end }}

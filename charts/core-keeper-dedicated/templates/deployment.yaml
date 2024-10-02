@@ -1,0 +1,91 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "core-keeper-dedicated.fullname" . }}
+  labels:
+    {{- include "core-keeper-dedicated.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "core-keeper-dedicated.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "core-keeper-dedicated.labels" . | nindent 8 }}
+        {{- with .Values.podLabels }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "core-keeper-dedicated.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          {{- with .Values.volumeMounts }}
+          volumeMounts:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          env:
+            - name: WORLD_INDEX
+              value: "{{ .Values.config.worldIndex }}"
+            - name: WORLD_NAME
+              value: "{{ .Values.config.worldName }}"
+            - name: WORLD_SEED
+              value: "{{ .Values.config.worldSeed }}"
+            - name: WORLD_MODE
+              value: "{{ .Values.config.worldMode }}"
+            - name: GAME_ID
+              value: "{{ .Values.config.gameID }}"
+            - name: DATA_PATH
+              value: "{{ .Values.config.dataPath }}"
+            - name: MAX_PLAYERS
+              value: "{{ .Values.config.maxPlayers }}"
+            - name: DISCORD
+              value: "{{ .Values.config.discord }}"
+            - name: DISCORD_HOOK
+              value: "{{ .Values.config.discordHook }}"
+            - name: SEASON
+              value: "{{ .Values.config.season }}"
+            - name: SERVER_IP
+              value: "{{ .Values.config.serverIP }}"
+            - name: SERVER_PORT
+              value: "{{ .Values.config.serverPort }}"
+          volumeMounts:
+            - name: server-data
+              mountPath: {{ .Values.volumes.serverFiles.mountPath }}
+            - name: server-files
+              mountPath: {{ .Values.volumes.serverData.mountPath }}
+      volumes:
+        - name: server-data
+          persistentVolumeClaim:
+            claimName: "{{ include "core-keeper-dedicated.fullname" . }}-server-data"
+        - name: server-files
+          persistentVolumeClaim:
+            claimName: "{{ include "core-keeper-dedicated.fullname" . }}-server-files"
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
