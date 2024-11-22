@@ -30,6 +30,8 @@ pds:
     reportSvcUrl: "https://mod.bsky.app"
     reportSvcDid: "did:plc:ar7c4by46qjdydhdevvrndac"
     crawlers: "https://bsky.network"
+    pdsEmailSmtpUrl: ""
+    pdsEmailFromAddress: ""
   dataStorage:
     size: 10Gi
     mountPath: "/pds"
