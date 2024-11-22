@@ -87,6 +87,10 @@ spec:
               value: "{{ .Values.pds.config.crawlers }}"
             - name: LOG_ENABLED
               value: "{{ .Values.pds.config.logEnabled }}"
+            - name: PDS_EMAIL_SMTP_URL
+              value: "{{ .Values.pds.config.pdsEmailSmtpUrl }}"
+            - name: PDS_EMAIL_FROM_ADDRESS
+              value: "{{ .Values.pds.config.pdsEmailFromAddress }}"
           ports:
             - name: pds-port
               containerPort: {{ .Values.service.port }}
