@@ -18,9 +18,9 @@ pds:
     secrets:
       # -- Output of `openssl rand --hex 16`
       jwtSecret: ""
-      # -- Output of `openssl ecparam --name secp256k1 --genkey --noout --outform DER | tail --bytes=+8 | head --bytes=32 | xxd --plain --cols 32`
-      adminPassword: ""
       # -- Output of `openssl rand --hex 16`
+      adminPassword: ""
+      # -- Output of `openssl ecparam --name secp256k1 --genkey --noout --outform DER | tail --bytes=+8 | head --bytes=32 | xxd --plain --cols 32`
       plcRotationKey: ""
       # -- Example: `smtps://user:password@smtp.example.com:465/`
       emailSmtpUrl: ""
