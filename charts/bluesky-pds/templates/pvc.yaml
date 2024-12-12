@@ -13,3 +13,7 @@ spec:
   {{- if ne .Values.pds.dataStorage.storageClass "" }}
   storageClassName: {{ .Values.pds.dataStorage.storageClass }}
   {{- end }}
+  {{- with .Values.pds.dataStorage.selector }}
+  selector:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}

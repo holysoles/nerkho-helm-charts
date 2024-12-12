@@ -88,6 +88,7 @@ Once this is done, you should be able to login on https://bsky.app/ using your P
 | pds.dataStorage.mountPath | string | `"/pds"` | Where to mount the PVC. Make sure it matches pds.config.dataDir! |
 | pds.dataStorage.size | string | `"10Gi"` | How large of a PVC to make |
 | pds.dataStorage.storageClass | string | `nil` | Storage class to use. Defaults to the cluster default. |
+| pds.dataStorage.selector | object | `nil` | Selector for the PVC to filter set of available volumes. Defaults to none. |
 | podAnnotations | object | `{}` |  |
 | podSecurityContext | object | `{}` |  |
 | replicaCount | int | `1` |  |
