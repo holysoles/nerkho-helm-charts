@@ -44,6 +44,8 @@ pds:
     mountPath: "/pds"
     # -- Storage class to use. Defaults to the cluster default.
     storageClass: null
+    # -- Selector for persistent disk
+    selector: null
 
 imagePullSecrets: []
 nameOverride: ""
