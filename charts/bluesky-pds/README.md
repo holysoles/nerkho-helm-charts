@@ -2,7 +2,7 @@
 
 A Helm chart to deploy a [Bluesky PDS](https://github.com/bluesky-social/pds) on Kubernetes.
 
-![Version: 0.2.1](https://img.shields.io/badge/Version-0.2.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.4.67](https://img.shields.io/badge/AppVersion-0.4.67-informational?style=flat-square)
+![Version: 0.3.1](https://img.shields.io/badge/Version-0.3.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.4.107](https://img.shields.io/badge/AppVersion-0.4.107-informational?style=flat-square)
 
 ## Installing the Chart
 
@@ -59,7 +59,7 @@ Once this is done, you should be able to login on https://bsky.app/ using your P
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"ghcr.io/bluesky-social/pds"` |  |
-| image.tag | string | `"0.4.67"` |  |
+| image.tag | string | `""` |  |
 | imagePullSecrets | list | `[]` |  |
 | ingress.annotations | object | `{}` |  |
 | ingress.className | string | `""` |  |
