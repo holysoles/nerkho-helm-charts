@@ -105,6 +105,16 @@ entries:
   redlib:
   - apiVersion: v2
     appVersion: 0.35.1
+    created: "2026-01-29T19:01:19.818596507Z"
+    description: A Helm chart for Redlib
+    digest: cd4e105b8648f9587b79656dc73b767f2d633de7e05c7cbb14e8683e106ad853
+    name: redlib
+    type: application
+    urls:
+    - https://github.com/holysoles/nerkho-helm-charts/releases/download/redlib-0.2.0/redlib-0.2.0.tgz
+    version: 0.2.0
+  - apiVersion: v2
+    appVersion: 0.35.1
     created: "2024-11-20T19:31:28.598639421Z"
     description: A Helm chart for Redlib
     digest: 56c800556db2ad924a87a7398a7837d96791410f19b330202fabd19fba51bf7b
@@ -123,4 +133,4 @@ entries:
     urls:
     - https://github.com/Nerkho/helm-charts/releases/download/redlib-0.1.1/redlib-0.1.1.tgz
     version: 0.1.1
-generated: "2026-01-25T00:30:18.989377288Z"
+generated: "2026-01-29T19:01:19.81863001Z"
